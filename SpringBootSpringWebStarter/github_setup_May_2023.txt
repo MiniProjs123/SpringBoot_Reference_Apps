@@ -1,0 +1,125 @@
+================================================================
+================================================================
+BASIC GIT SETUP NOTES ON MY HOME WINDOWS MACHINE
+================================================================
+================================================================
+https://docs.github.com/en/authentication/
+connecting-to-github-with-ssh/
+generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+--> ls -al ~/.ssh
+
+1 - Generate new ssh key:
+    ssh-keygen -t rsa -b 4096 -C "paul.home4748@gmail.com"
+
+2 - Set agent running:
+    eval "$(ssh-agent -s)"
+    --> pid 8548
+
+3 - Add private key to agent:
+    ssh-add ~/.ssh/id_rsa
+
+https://docs.github.com/en/authentication/
+connecting-to-github-with-ssh/
+adding-a-new-ssh-key-to-your-github-account
+
+4 - clip < ~/.ssh/id_rsa.pub
+
+clip < ~/.ssh/BasicStore.pub
+clip < ~/.ssh/MiniProjs123.pub
+
+https://docs.github.com/en/authentication/
+connecting-to-github-with-ssh/testing-your-ssh-connection
+
+5 - Test ssh to GitHub
+    ssh -T git@github.com
+    
+6 - create a new git project to this github account
+    
+
+7 - add an existing project
+
+    remove any previous git for a project
+    rm -rf .git
+
+TESTED
+1) Create a new project on BasicStore using SSH + edit/push
+   --> eg git clone git@github.com:BasicStore/TestRepOnly.git
+
+   BASICSTORE:     c/j8and9_workspace_eclipse/zNewGit1 
+   zMiniProjs123   c/j8_pd_2023_workspace/zNewGit2
+
+2) Download an existing project on BasicStore using SSH 
+       + edit/push
+   --> eg git clone git@github.com:BasicStore/TestRepOnly.git
+
+3) Update an existing project locally and push to BasicStore
+   --> still need to create the remote github repository   
+   --> issues logging in: 
+       setup Personal Access Token for this GitHub account*
+   --> from within project, init git and checkin the project content
+       & supply the passphrase to complete the commit
+
+rm -rf .git
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:MiniProjs123/Tool_Manufacture_System.git
+git branch -M main
+git push -u origin main
+
+================================================================
+* SETUP PERSONAL ACCESS TOKEN
+
+remote: Support for password authentication was removed on 
+August 13, 2021:
+GitHub is no longer accepting account passwords when 
+authenticating Git operations. 
+You need to add a PAT (Personal Access Token) instead
+
+From your GitHub account, go to Settings 
+→ Developer Settings → 
+Personal Access Token → Generate New Token (Give your password) 
+→ Fillup the form → click Generate token 
+→ Copy the generated Token, 
+-- it will be something like 
+   ghp_sFhFsSHhTzMDreGRLjmks4Tzuzgthdvfsrta
+
+================================================================
+SETTING USERNAME
+
+git config --list
+git config --global user.name "MiniProjs"
+  OR "MoaningMurtle"
+git config --global user.email "paul.home4748@gmail.com"
+  OR "paul.4748home@gmail.com"
+
+Host github.com-BasicStore
+    HostName github.com
+    User MoaningMurtle
+    IdentityFile ~/.ssh/github-BasicStore
+
+================================================================
+
+ssh-keygen -t rsa -P "" -f BasicStore
+ssh-keygen -t rsa -P "" -f MiniProjs123
+
+BITS:
+https://stackoverflow.com/questions/69580617/how-to-switch-between-two-git-accounts-on-same-device-in-the-terminal-wsl2
+
+
+
+git config user.name BasicStore
+git config user.email paul.4748home@gmail.com
+
+git config user.name MiniProjs123
+git config user.email paul.home4748@gmail.com
+
+ssh-keygen -R 140.82.121.3
+
+
+
+
+
+
