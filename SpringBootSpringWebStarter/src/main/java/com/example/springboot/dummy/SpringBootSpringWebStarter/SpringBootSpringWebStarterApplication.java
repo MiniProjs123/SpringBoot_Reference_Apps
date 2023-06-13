@@ -14,6 +14,8 @@ public class SpringBootSpringWebStarterApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootSpringWebStarterApplication.class, args);
+
+		System.out.println("Beans are now loaded and off we go......");
 	}
 
 	// curl localhost:8080/
