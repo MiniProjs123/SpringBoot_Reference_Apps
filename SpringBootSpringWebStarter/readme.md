@@ -44,5 +44,5 @@ ssh-agent -s
 ssh-add ~/.ssh/github-TRT
 
 --------------------------
-testing commit: test with adjustment to config file
+testing commit: test with adjustment to known hosts
 --------------------------
