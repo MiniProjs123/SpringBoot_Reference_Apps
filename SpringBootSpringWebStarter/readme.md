@@ -44,8 +44,3 @@ ssh-agent -s
 ssh-add ~/.ssh/github-TRT
 
 --------------------------
-Reapply Personal Access Token if necessary - 13.06.23
-
-
-
---------------------------
