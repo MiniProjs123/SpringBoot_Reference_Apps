@@ -44,5 +44,7 @@ ssh-agent -s
 ssh-add ~/.ssh/github-TRT
 
 --------------------------
-testing commit: test with adjustment to known hosts
+testing commit - tested with removal of git config
+- config file (no matter for single repo access)
+- known hosts (can still commit but git cannot verify it is the correct destination)
 --------------------------
