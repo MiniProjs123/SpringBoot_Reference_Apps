@@ -44,5 +44,5 @@ ssh-agent -s
 ssh-add ~/.ssh/github-TRT
 
 --------------------------
-testing commit: deleting keys incorrectly from home directory
+testing commit: test with adjustment to config file
 --------------------------
