@@ -11,6 +11,11 @@ Execute:
 ./mvnw spring-boot:run
 mvn spring-boot:run
 
+Bizarrely, control c is not stopping spring boot!
+However, running in maven does work (once it is compiled and installed):
+
+java -jar target/SpringBootSpringWebStarter-0.0.1-SNAPSHOT.jar
+
 --------------------------
 Reference:
 
@@ -44,7 +49,7 @@ ssh-agent -s
 ssh-add ~/.ssh/github-TRT
 
 --------------------------
-testing commit - tested with removal of git config
+testing commit - completed testing with removal of git config
 - config file (no matter for single repo access)
 - known hosts (can still commit but git cannot verify it is the correct destination)
 --------------------------
