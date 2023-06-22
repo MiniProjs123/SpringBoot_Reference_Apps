@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 // The embedded server starts on a random port because of webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
 // and the actual port is configured automatically in the base URL for the TestRestTemplate.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PocIntegration {
+public class PocIntegrationTest {
 
     @Autowired
     private TestRestTemplate template;

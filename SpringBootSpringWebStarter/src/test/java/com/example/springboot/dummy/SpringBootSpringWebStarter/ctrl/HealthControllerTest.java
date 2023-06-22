@@ -19,7 +19,7 @@ public class HealthControllerTest {
 	private MockMvc mvc;
 
 	@Test
-	public void getHelloControllerUnitTest() throws Exception {
+	public void getHealthControllerUnitTest() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().string(equalTo("Basic SpringBoot Spring Web starter!")));

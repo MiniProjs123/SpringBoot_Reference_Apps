@@ -1,5 +1,5 @@
 package com.example.springboot.dummy.SpringBootSpringWebStarter.ctrl;
-import com.example.springboot.dummy.SpringBootSpringWebStarter.service.Greeter;
+import com.example.springboot.dummy.SpringBootSpringWebStarter.service.GreetingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 // GOOD
 //  http://localhost:8080/greeting/initial/business/ref/470
+//  http://localhost:8080/greeting/initial/employees
 
 // BAD
 // http://localhost:8080/greeting/initial/business/ref/100
@@ -22,11 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class GreetingController {
 
     @Autowired
-    private Greeter greetingService;
+    @Qualifier("greetingService1")
+    private GreetingService greetingService;
 
     @Autowired
-    @Qualifier("greetingJoker")
-    private Greeter greetingJaker;
+    @Qualifier("greetingService2")
+    private GreetingService greetingJaker;
 
     private static final Logger logger = LoggerFactory.getLogger(GreetingController.class);
 
@@ -42,6 +44,10 @@ public class GreetingController {
         return ResponseEntity.ok().body(greetingService.getGreeting(id, classification));
     }
 
+    @GetMapping(value = "/initial/employees")
+    public ResponseEntity<?> getEmployees() {
+        return ResponseEntity.ok().body(greetingService.findAll());
+    }
 
     // TRACE | DEBUG | INFO | WARN | ERROR
     // LOGGING: Logback is built on Apache Commons Logging

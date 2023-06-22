@@ -1,0 +1,15 @@
+ISSUES AND NOTES:
+
+- if context cannot be loaded......check qualifier is used and all beans are accounted for in test.
+
+- if getting error: ResourceAccessException: I/O error on GET request for "http://localhost:8080/": Connection refused: connect
+  in a @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) test
+  .......obviously the port is dynamic in the test, so cannot specify some port such as 8080
+
+- check port not already in use:
+  - Windows / git bash
+    --> Find processes on 8080:  netstat -vanp tcp | grep 8080
+    --> Kill it
+
+  - List all process names with id on Unix
+    --> lsof -i 8080
