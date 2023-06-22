@@ -1,5 +1,6 @@
 package com.example.springboot.dummy.SpringBootSpringWebStarter.ctrl;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +8,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 /*
     Tests using the server with a real HTTP Request....note the port is generated dynamically
  */
+@ExtendWith(SpringExtension.class) // optional
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class HealthControllerWithServerTest {
 

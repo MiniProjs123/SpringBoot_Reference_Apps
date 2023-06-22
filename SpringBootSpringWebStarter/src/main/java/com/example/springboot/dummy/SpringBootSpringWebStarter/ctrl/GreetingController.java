@@ -4,15 +4,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 // GOOD
-//  http://localhost:8080/greeting/initial/business/ref/470
-//  http://localhost:8080/greeting/initial/employees
+//  GET http://localhost:8080/greeting/initial/business/ref/470
+//  GET http://localhost:8080/greeting/initial/employees
+//  DELETE http://localhost:8080/greeting/employees/47
+
 
 // BAD
 // http://localhost:8080/greeting/initial/business/ref/100
@@ -23,11 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class GreetingController {
 
     @Autowired
-    @Qualifier("greetingService1")
+    @Qualifier("greetingService1")  // specifies implementation
     private GreetingService greetingService;
 
     @Autowired
-    @Qualifier("greetingService2")
+    @Qualifier("greetingService2")  // specifies implementation
     private GreetingService greetingJaker;
 
     private static final Logger logger = LoggerFactory.getLogger(GreetingController.class);
@@ -48,6 +48,19 @@ public class GreetingController {
     public ResponseEntity<?> getEmployees() {
         return ResponseEntity.ok().body(greetingService.findAll());
     }
+
+
+    @DeleteMapping(value = "/employees/{id}")
+    public ResponseEntity<HttpStatus> removeEmployee(@PathVariable("id") int id)
+    {
+        logger.info("How's that!");
+
+        //code
+        //return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+    }
+
+
 
     // TRACE | DEBUG | INFO | WARN | ERROR
     // LOGGING: Logback is built on Apache Commons Logging

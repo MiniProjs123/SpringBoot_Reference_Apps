@@ -1,6 +1,9 @@
 package com.example.springboot.dummy.SpringBootSpringWebStarter.service;
 
+import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.Club;
 import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.Employee;
+import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.Match;
+import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.MatchType;
 import com.example.springboot.dummy.SpringBootSpringWebStarter.ex.BadIdeaException;
 import com.example.springboot.dummy.SpringBootSpringWebStarter.ex.NotImplementedException;
 import org.slf4j.Logger;
@@ -47,8 +50,15 @@ public class GreetingService1 implements GreetingService {
     }
 
     public List<Employee> findAll() {
+        Club burley = new Club("Burley", 1907, true);
+        List<Match> matches = Arrays.asList(new Match(MatchType.OVERS_60, "Moordown"),
+                new Match(MatchType.OVERS_50, "New Milton"));
+        burley.setMatches(matches);
+        Employee s1 = new Employee("Sally", "Sandals", 47, burley);
+
         return Arrays.asList(new Employee("John", "Smith", 50),
-                new Employee("Joan", "Davies", 51));
+                new Employee("Joan", "Davies", 51),
+                s1);
 
     }
 
