@@ -39,19 +39,24 @@ HOW TO RUN TESTS WITH MAVEN
 **********************
 
 # Run all the unit test classes.
-$ mvn test
+  mvn test
 
 # Run a single test class.
-$ mvn -Dtest=TestApp1 test
+  mvn -Dtest=GreetingControllerTest test
 
 # Run multiple test classes.
-$ mvn -Dtest=TestApp1,TestApp2 test
+  mvn -Dtest=GreetingControllerTest,HealthControllerTest test
 
 # Run a single test method from a test class.
-$ mvn -Dtest=TestApp1#methodname test
+  mvn -Dtest=GreetingControllerTest#testFindAll test
 
-# Run all test methods that match pattern 'testHello*' from a test class.
-$ mvn -Dtest=TestApp1#testHello* test
+# Run all test methods that match pattern 'testFind*' from a test class.
+  mvn -Dtest=GreetingControllerTest#testFind* test
 
-# Run all test methods match pattern 'testHello*' and 'testMagic*' from a test class.
-$ mvn -Dtest=TestApp1#testHello*+testMagic* test
+# Run all test methods match pattern 'testFind*' and 'testPost*' from a test class.
+  mvn -Dtest=GreetingControllerTest#testFind*+testPost* test
+
+# Clean and install without running any tests
+  mvn clean install -DskipTest
+
+**********************

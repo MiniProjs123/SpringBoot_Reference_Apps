@@ -39,7 +39,7 @@ public class GreetingControllerTest {
 
 
     @Test
-    public void testfindAll() throws Exception {
+    public void testFindAll() throws Exception {
 
         Employee employee1 = new Employee("Paul", "Jones", 44);
         Employee employee2 = new Employee("John", "Richards", 45);
@@ -56,6 +56,13 @@ public class GreetingControllerTest {
                 .andExpect(jsonPath("$[1].firstname", Matchers.is("John")))
                 .andExpect(jsonPath("$[1].surname", Matchers.is("Richards")))
                 .andExpect(jsonPath("$[1].age", Matchers.is(45)));
+    }
+
+    @Test
+    public void testPost() {
+
+
+
     }
 
 }
