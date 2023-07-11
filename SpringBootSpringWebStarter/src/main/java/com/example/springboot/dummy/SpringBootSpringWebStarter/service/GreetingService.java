@@ -12,4 +12,6 @@ public interface GreetingService {
 
     EmployeeVO addNewEmployee(String firstname, String surname, int age);
 
+    EmployeeVO updateEmployee(int id, EmployeeVO updated);
+
 }

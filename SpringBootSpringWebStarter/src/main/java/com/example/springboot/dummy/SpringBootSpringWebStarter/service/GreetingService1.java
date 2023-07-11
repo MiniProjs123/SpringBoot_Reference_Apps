@@ -7,6 +7,7 @@ import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.MatchType;
 import com.example.springboot.dummy.SpringBootSpringWebStarter.ex.BadIdeaException;
 import com.example.springboot.dummy.SpringBootSpringWebStarter.ex.NotImplementedException;
 import com.example.springboot.dummy.SpringBootSpringWebStarter.vo.EmployeeVO;
+import io.micrometer.common.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -60,17 +61,29 @@ public class GreetingService1 implements GreetingService {
         return Arrays.asList(new Employee("John", "Smith", 50),
                 new Employee("Joan", "Davies", 51),
                 s1);
-
     }
 
-
     public EmployeeVO addNewEmployee(String firstname, String surname, int age) {
+        if (StringUtils.isBlank(firstname)) {
+            return null;
+        }
+
         EmployeeVO employee = new EmployeeVO(firstname, surname, age);
 
         //....create somewhere...
 
         return employee;
     }
+
+    public EmployeeVO updateEmployee(int id, EmployeeVO updatedEmpl) {
+
+        // save updated Employee with existing id to database
+
+        EmployeeVO employee = new EmployeeVO(updatedEmpl.getFirstname(), updatedEmpl.getSurname(), updatedEmpl.getAge());
+
+        return employee;
+    }
+
 
 
 }

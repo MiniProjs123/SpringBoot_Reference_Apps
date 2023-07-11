@@ -24,12 +24,12 @@ Purpose:      Tests endpoints within GreetingController class
 Scope:        Loads complete application context for end to end testing
               Fullstack, but uses MockMVC to save the overhead of having to start the server.
               The part where Spring handles the incoming HTTP request and hands it off to your controller, is mocked by MockMVC.
-Examples:     https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
 
-              OTHER OPTION:
+              OTHER OPTION:  https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
+                             note - need to import in pom: junit-jupiter-api + junit
+                                    Provides a bridge between Spring Boot test features and JUnit, but actually works fine with @SpringBootTest
               @RunWith(SpringRunner.class)
               @WebMvcTest(GreetingController.class)
-
 
 Name:         GreetingControllerTestSpringRunner
 Annotation:   @RunWith(SpringRunner.class) + @WebMvcTest(EmployeeRESTController.class)

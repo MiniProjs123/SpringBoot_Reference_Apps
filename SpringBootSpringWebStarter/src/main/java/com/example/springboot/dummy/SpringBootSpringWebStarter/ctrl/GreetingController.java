@@ -88,17 +88,22 @@ public class GreetingController {
         return ResponseEntity.status(HttpStatus.CREATED).body(emp);
     }
 
-    @DeleteMapping(value = "/employees/{id}")
+    @DeleteMapping(value = "/employee/{id}")
     public ResponseEntity<HttpStatus> removeEmployee(@PathVariable("id") int id)
     {
-        logger.info("How's that!");
+        logger.info("Deleting with id = " + id);
 
-        //code
-        //return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
         return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 
+    @PutMapping(value = "/employee/{id}")
+    public ResponseEntity<EmployeeVO> updateEmployee (@PathVariable("id") int id, @Valid @RequestBody EmployeeVO employee)
+    {
+        // go ahead and update this employee record
+        EmployeeVO emp = greetingService.updateEmployee(id, employee);
 
+        return new ResponseEntity<EmployeeVO>(emp, HttpStatus.OK);
+    }
 
     // TRACE | DEBUG | INFO | WARN | ERROR
     // LOGGING: Logback is built on Apache Commons Logging

@@ -3,6 +3,7 @@ import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.Club;
 
 public class EmployeeVO {
 
+    private int id;
     private String firstname;
     private String surname;
     private int age;
@@ -38,9 +39,14 @@ public class EmployeeVO {
         return age;
     }
 
+
     // TODO stub only!
     public int getId() {
         return 1;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setAge(int age) {

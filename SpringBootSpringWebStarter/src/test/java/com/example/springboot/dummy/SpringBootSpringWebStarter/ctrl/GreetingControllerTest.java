@@ -153,7 +153,7 @@ public class GreetingControllerTest {
 
         String jsonContent = asJsonString(new EmployeeVO("firstName4", "lastName4", 45));
 
-       mockMvc.perform( MockMvcRequestBuilders
+        mockMvc.perform( MockMvcRequestBuilders
                         .post("/greeting/employees/add2")
                         .content(jsonContent)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -169,6 +169,22 @@ public class GreetingControllerTest {
     }
 
     @Test
+    @DisplayName("Test adding when mocked employee returns null")
+    public void testCreateNewEmployeeWithNullEmployeeMock() throws Exception {
+        when(greetingService.addNewEmployee(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt())).
+                thenReturn(null);
+
+        String jsonContent = asJsonString(new EmployeeVO("firstName4", "lastName4", 45));
+        mockMvc.perform( MockMvcRequestBuilders
+                        .post("/greeting/employees/add2")
+                        .content(jsonContent)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
+
+
+    @Test
     @DisplayName("Adding a new object - POC")
     public void testCreateNewObject() throws Exception {
         String jsonContent = asJsonString(new POC("SomeObject"));
@@ -180,6 +196,39 @@ public class GreetingControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.field1", Matchers.is("SomeObject")));
+    }
+
+    @Test
+    @DisplayName("Test delete object")
+    public void deleteEmployeeAPI() throws Exception
+    {
+        mockMvc.perform( MockMvcRequestBuilders.delete("/greeting/employee/{id}", 1) )
+                .andExpect(status().isAccepted());
+    }
+
+    @Test
+    @DisplayName("Test update object")
+    public void updateEmployeeAPI() throws Exception
+    {
+        EmployeeVO updatedEmpl = new EmployeeVO("firstName2", "lastName2", 45);
+        updatedEmpl.setId(1);
+        String jsonContent = asJsonString(updatedEmpl);
+
+        // the actual mocked object to be returned
+        EmployeeVO mockedObject = new EmployeeVO("John", "Wisden", 50);
+
+        when(greetingService.updateEmployee(Mockito.anyInt(), Mockito.any())).
+                thenReturn(mockedObject);
+
+        mockMvc.perform( MockMvcRequestBuilders
+                        .put("/greeting/employee/{id}", 1)
+                        .content(jsonContent)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.firstname").value("John"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.surname").value("Wisden"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.age").value(50));
     }
 
     public static String asJsonString(final Object obj) {
