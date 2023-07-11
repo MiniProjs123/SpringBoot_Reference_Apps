@@ -13,3 +13,6 @@ ISSUES AND NOTES:
 
   - List all process names with id on Unix
     --> lsof -i 8080
+
+- in order for Serialization of json to work from client payload to server, be sure
+  to supply constructor with no arguments!

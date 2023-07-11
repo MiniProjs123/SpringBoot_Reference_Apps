@@ -18,7 +18,7 @@ Execute:
 mvn spring-boot:run
 
 Bizarrely, control c is not stopping spring boot!
-However, running in maven does work (once it is compiled and installed):
+However, running in maven with 'java -jar..' does work (once it is compiled and installed):
 
 java -jar target/SpringBootSpringWebStarter-0.0.1-SNAPSHOT.jar
 

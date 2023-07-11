@@ -1,5 +1,9 @@
 package com.example.springboot.dummy.SpringBootSpringWebStarter.ctrl;
+import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.Employee;
+import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.POC;
 import com.example.springboot.dummy.SpringBootSpringWebStarter.service.GreetingService;
+import com.example.springboot.dummy.SpringBootSpringWebStarter.vo.EmployeeVO;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +11,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 // GOOD
 //  GET http://localhost:8080/greeting/initial/business/ref/470
 //  GET http://localhost:8080/greeting/initial/employees
 //  DELETE http://localhost:8080/greeting/employees/47
+//  POST http://localhost:8080/greeting/employees/add
+//        {
+//            "firstname": "Random",
+//            "surname": "Person",
+//            "age": 44
+//        }
+
 
 
 // BAD
@@ -49,6 +63,30 @@ public class GreetingController {
         return ResponseEntity.ok().body(greetingService.findAll());
     }
 
+    @PostMapping(value = "/poc/add")   //
+    public ResponseEntity<POC> addPoc(@Valid @RequestBody POC poc) {
+       return ResponseEntity.status(HttpStatus.CREATED).body(poc);
+    }
+
+    @PostMapping(value = "/employees/add1") // adds an employee without actually returning it
+    public ResponseEntity<EmployeeVO> addEmployee1(@Valid @RequestBody EmployeeVO employee) {
+        EmployeeVO emp = greetingService.addNewEmployee(employee.getFirstname(), employee.getSurname(),
+                employee.getAge());
+
+        if (emp == null) return ResponseEntity.noContent().build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping(value = "/employees/add2") // adds an employee and returns the created object
+    public ResponseEntity<EmployeeVO> addEmployee2(@Valid @RequestBody EmployeeVO employee) {
+        EmployeeVO emp = greetingService.addNewEmployee(employee.getFirstname(), employee.getSurname(),
+                employee.getAge());
+
+        if (emp == null) return ResponseEntity.noContent().build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(emp);
+    }
 
     @DeleteMapping(value = "/employees/{id}")
     public ResponseEntity<HttpStatus> removeEmployee(@PathVariable("id") int id)

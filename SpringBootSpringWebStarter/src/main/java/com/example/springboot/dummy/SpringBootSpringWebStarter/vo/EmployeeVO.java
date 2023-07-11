@@ -1,22 +1,23 @@
-package com.example.springboot.dummy.SpringBootSpringWebStarter.dm;
+package com.example.springboot.dummy.SpringBootSpringWebStarter.vo;
+import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.Club;
 
-public class Employee {
+public class EmployeeVO {
 
     private String firstname;
     private String surname;
     private int age;
     private Club club;
 
-    public Employee() {
+    public EmployeeVO() {
 
     }
 
-    public Employee(String firstname, String surname, int age) {
+    public EmployeeVO(String firstname, String surname, int age) {
         this.firstname = firstname;
         this.surname = surname;
         this.age = age;
     }
-    public Employee(String firstname, String surname, int age, Club club) {
+    public EmployeeVO(String firstname, String surname, int age, Club club) {
         this(firstname, surname, age);
         this.club = club;
     }

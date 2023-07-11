@@ -6,6 +6,7 @@ import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.Match;
 import com.example.springboot.dummy.SpringBootSpringWebStarter.dm.MatchType;
 import com.example.springboot.dummy.SpringBootSpringWebStarter.ex.BadIdeaException;
 import com.example.springboot.dummy.SpringBootSpringWebStarter.ex.NotImplementedException;
+import com.example.springboot.dummy.SpringBootSpringWebStarter.vo.EmployeeVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,14 @@ public class GreetingService1 implements GreetingService {
 
     }
 
+
+    public EmployeeVO addNewEmployee(String firstname, String surname, int age) {
+        EmployeeVO employee = new EmployeeVO(firstname, surname, age);
+
+        //....create somewhere...
+
+        return employee;
+    }
 
 
 }
